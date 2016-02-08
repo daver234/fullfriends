@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Full Friends</title>
+      <meta name="description" content="WS">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+   </head>
+<body>
+  
+  <p id="flash">{% with messages = get_flashed_messages() %}
+          {% if messages %}
+              {% for message in messages %}
+                <p id='flasher'>{{message}}</p>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        </p>
+  <h1>These are all my friends!</h1>
+  {% for friend in friends: %}
+    <p>First Name: {{friend['first_name']}}</p>
+    <p>Last Name: {{friend['last_name']}}</p>
+    <p>Occupation: {{friend['occupation']}}</p>
+    <p>ID: {{friend['id']}}</p>
+    <form action='/friends/{{friend['id']}}/edit' method='GET'>
+      <button class='btn btn-default'>Edit</button>
+    </form>
+    <br>
+    <form action='/friends/{{friend['id']}}/delete' method='POST'>
+      <button class='btn btn-default'>Delete</button>
+    </form>
+    <hr>
+  {% endfor %}
+  
+
+  <h2>Add a Friend</h2>
+  <form action='/friends' method='POST'>
+    <label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label>
+    <label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label>
+    <label for="occupation">Occupation:<input type="text" name="occupation" id="occupation"></label>
+    <input type="submit" value="Add">
+  </form>
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Edit Friend</title>
+      <meta name="description" content="WS">
+      <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"> -->
+   </head>
+<body>
+	<h3>Update Your Information</h3>
+	<hr>
+	{% for person in theperson: %}
+	<form action='/friends/{{person['id']}}' method='POST'>
+    <p>First Name: {{person['first_name']}} :<input type="text" name="first_name" value="{{person['first_name']}}" ></p>
+    <p>Last Name: {{person['last_name']}}: <input type="text" name="last_name" value="{{person['last_name']}}"></p>
+    <p>Occupation: {{person['occupation']}} : <input type="text" name="occupation" value="{{person['occupation']}}"></p>
+    <p>ID: {{person['id']}}</p>
+    
+      <button class='btn btn-default'>Update</button>
+    </form>
+    {% endfor %}
+</body>
+</html>
